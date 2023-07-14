@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Typing Speed Test</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1 class="title">Typing Speed test</h1>
+<div class="wrapper">
+    <div class="time">Time left : <span><b></b>s</span></div>
+    <input type="text" class="input-field">
+    <div class="content-box">
+        <div class="typing-text">
+            <p></p>
+        </div>
+        <div class="content">
+            <ul class="result-box">
+                <li class="mistake">Mistake : <span>0</span></li>
+                <li class="wpm">WPM : <span>0</span></li>
+                <li class="cpm">CPM : <span>0</span></li>
+            </ul>
+
+            <div class="btn-wrap">
+                <button type="button" class="btn">Try Again</button>
+                <button type="button" class="btn" onclick=" time15()">15 sec</button>
+                <button type="button" class="btn" onclick=" time30()">30 sec</button>
+                <button type="button" class="btn" onclick=" time60()">60 sec</button>
+                <button type="button" class="btn" onclick=" time120()">120 sec</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="modal">
+    <div class="modal-content">
+        <span class="close-button">×</span>
+        <div class="modal-body">
+            <h1>Typing Test Complete!</h1>
+            <div class="">Your speed was
+                <div class="result-wpm"><span></span> WPM</div>
+                with
+                <div>(<span class="result-cpm"></span>cpm).</div>
+                <div class="accuracy-wrap">
+                    Your accuracy was
+                    <span class="curr_accuracy"> 100 </span>.
+                    It could be better!
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn footer-btn" onclick="resetGame()">Try Again</button>
+        </div>
+    </div>
+</div>
+
+<script src="paragraph.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
