@@ -9,15 +9,12 @@ const resultWpm = document.querySelector('.result-wpm span')
 const resultCpm = document.querySelector('.result-cpm')
 let charIndex = mistakes = 0;
 let timer;
-let maxTime = 60;
+let maxTime = 5;
 let timeLeft = maxTime;
 let isType = false
 let result = false
 let wpm = 0
 let accuracy_text = document.querySelector(".curr_accuracy");
-
-
-
 
 
 /*generating random paragraph*/
@@ -40,6 +37,9 @@ function initTyping() {
     let typedChar = inputField.value.split("")[charIndex]
     if (timeLeft === 0) {
         initTimer()
+        if (modal.classList.contains("show-modal")) {
+            toggleModal()
+        }
     }
     if (charIndex < characters.length - 1 && timeLeft > 0) {
         if (!isType) {
@@ -53,10 +53,12 @@ function initTyping() {
             }
             characters[charIndex].classList.remove('correct', 'incorrect')
         } else {
+            /*adding correct class*/
             if (characters[charIndex].innerText === typedChar) {
                 characters[charIndex].classList.add('correct')
                 console.log('correct')
             } else {
+                /*adding incorrect class and counting mistakes*/
                 mistakes++
                 console.log(mistakes)
                 console.log('incorrect')
@@ -76,11 +78,11 @@ function initTyping() {
         let correctCharacters = (charIndex - mistakes);
         let accuracyVal = ((correctCharacters / charIndex) * 100);
         accuracy_text.textContent = Math.round(accuracyVal) + '%';
-        if (accuracyVal === NaN){
+        if (isNaN(accuracyVal)) {
             accuracy_text.innerText = 100
         }
 
-
+        /*wpm cpm calculation*/
         wpm = Math.round((((charIndex - mistakes) / 5) / (maxTime - timeLeft)) * 60)
         wpm = wpm < 0 || !wpm || wpm === NaN || wpm === Infinity ? 0 : wpm
         wpmTag.innerText = wpm;
@@ -114,11 +116,14 @@ function disableField() {
         inputField.disabled = true;
     }
 }
+/*modals*/
+var modal = document.querySelector(".modal");
+var closeButton = document.querySelector(".close-button");
 
 /*reset function*/
 function resetGame() {
     if (modal.classList.contains("show-modal")) {
-        toggleModal()
+        modal.classList.remove('show-modal')
     }
     randomParagraph()
     inputField.disabled = false;
@@ -142,12 +147,10 @@ tryAgainBtn.addEventListener('click', resetGame)
 timeTag.innerText = timeLeft
 
 
-/*modals*/
-var modal = document.querySelector(".modal");
-var closeButton = document.querySelector(".close-button");
 
 function toggleModal() {
     modal.classList.toggle("show-modal");
+    console.log('modal should open')
     resultWpm.innerText = wpm
     resultCpm.innerText = charIndex - mistakes
 }
@@ -164,7 +167,7 @@ window.addEventListener("click", windowOnClick);
 
 /*times*/
 
-function  time30(){
+function time30() {
     console.log('hello')
     maxTime = 30
     timeLeft = maxTime;
@@ -173,7 +176,7 @@ function  time30(){
     timeTag.innerText = timeLeft
 }
 
-function  time15(){
+function time15() {
     console.log('hello')
     maxTime = 15
     timeLeft = maxTime;
@@ -182,7 +185,7 @@ function  time15(){
     timeTag.innerText = timeLeft
 }
 
-function  time60(){
+function time60() {
     console.log('hello')
     maxTime = 60
     timeLeft = maxTime;
@@ -190,7 +193,7 @@ function  time60(){
     timeTag.innerText = timeLeft
 }
 
-function  time120(){
+function time120() {
     console.log('hello')
     maxTime = 120
     timeLeft = maxTime;
