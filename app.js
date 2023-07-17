@@ -9,7 +9,7 @@ const resultWpm = document.querySelector('.result-wpm span')
 const resultCpm = document.querySelector('.result-cpm')
 let charIndex = mistakes = 0;
 let timer;
-let maxTime = 5;
+let maxTime = 60;
 let timeLeft = maxTime;
 let isType = false
 let result = false
